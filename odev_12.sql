@@ -39,10 +39,12 @@ from film
 
 --payment tablosunda en fazla sayıda alışveriş yapan müşterileri(customer) sıralayınız.
 
-select customer_id, Count(customer_id) as Toplam_alisveris_sayisi
+select first_name,last_name,customer.customer_id, Count(customer.customer_id) as total_shopping_number
 from payment 
-group by customer_id
-order by Count(customer_id) desc;
+join customer
+on customer.customer_id = payment.customer_id
+group by customer.customer_id
+order by Count(customer.customer_id) desc;
 
 
 
